@@ -36,9 +36,9 @@ public class Exercise{
                                                             .collect(Collectors.toList()).size() > 0);
                             })
                             .findAny();
-                if(ped.isPresent()) return true;
-                }
-                return false;
+                return ped.isPresent();
+              }
+              return false;
             }
         ).collect(Collectors.toList());
         listRes.forEach(res -> System.out.print(" Restaurant: "+res.name+" openTime: "+date+", "+startTime+"\n"));
