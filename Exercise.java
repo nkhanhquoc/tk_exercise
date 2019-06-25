@@ -31,12 +31,9 @@ public class Exercise{
                 if(listSer.size() > 0){
                     Optional<ReservablePeriod> ped = listSer.stream()
                             .filter(ser -> {
-                                if(ser.periodTime.stream().filter(pedtime -> (pedtime.startTime.isBefore(startTime) || pedtime.startTime.equals(startTime))
+                                return (ser.periodTime.stream().filter(pedtime -> (pedtime.startTime.isBefore(startTime) || pedtime.startTime.equals(startTime))
                                                             && (pedtime.endTime.isAfter(startTime.plusMinutes(period)) || pedtime.endTime.equals(startTime.plusMinutes(period)) ))
-                                                            .collect(Collectors.toList()).size() > 0){
-                                    return true;
-                                }
-                                return false;
+                                                            .collect(Collectors.toList()).size() > 0);
                             })
                             .findAny();
                 if(ped.isPresent()) return true;
